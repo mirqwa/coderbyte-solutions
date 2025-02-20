@@ -15,9 +15,12 @@ def look_say_sequence(num):
         digit_key = digit
         if digit != prev_digit:
             digit_key = f"{digit}_{repeat}"
+            counts[digit_key] += 1
+            prev_digit = digit
             repeat += 1
+            continue
         possible_keys = [key for key in list(counts.keys()) if key.startswith(digit)]
-        if len(possible_keys) > 1:
+        if len(possible_keys) > 0:
             digit_key = possible_keys[-1]
         counts[digit_key] += 1
         prev_digit = digit
@@ -32,3 +35,4 @@ if __name__ == "__main__":
     print(look_say_sequence(11))
     print(look_say_sequence(21))
     print(look_say_sequence(1211))
+    print(look_say_sequence(111221)) # 312211
